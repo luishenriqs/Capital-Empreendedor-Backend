@@ -1,7 +1,9 @@
 var express = require('express');
-var users = require('./users.routes');
 var router = express.Router();
 
-router.get('/', users)
+router.get('/', async (req, res) => {
+  res.json(data)
+  res.send({ message: "OK" });
+});
 
 module.exports = router;

@@ -12,6 +12,7 @@ functions.getAll = (collection) => {
         var data = JSON.parse(fs.readFileSync(databaseFile));
         if(data[collection]) {
           resolve(data[collection]);
+          console.log(data[collection]);
         } else {
           resolve({}); 
         }
