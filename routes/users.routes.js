@@ -49,4 +49,15 @@ usersRouter.post('/opportunities/:email', async (req, res) => {
 });
 /**************************************************************** */
 
+/*******************[Editando uma oportunidade]****************** */
+usersRouter.put('/opportunities/:email', async (req, res) => {
+  const { email } = req.params;
+  const { newData, index } = req.body;
+  const opportunities = await getOppotunities(email);
+  const updated = opportunities.splice(index, 1, newData);
+  const data = await methods.set("opportunities", email, opportunities);
+  res.send(data);
+});
+/**************************************************************** */
+
 module.exports = usersRouter;
