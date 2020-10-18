@@ -64,27 +64,22 @@
       "opportunities": []
     },
     "cliente3@example.com": {
-      "0": {
-        "name": "Instituição 2",
-        "limit": 30000,
-        "interest": 0.05,
-        "term": 36,
-        "isActive": true
-      },
-      "1": {
-        "name": "Instituição 3",
-        "limit": 75000,
-        "interest": 0.053,
-        "term": 48,
-        "isActive": false
-      },
-      "2": {
-        "name": "INSTITUIÇÃO X",
-        "limit": 22222222,
-        "interest": 2.22,
-        "term": 2,
-        "isActive": true
-      }
+      "opportunities": [
+        {
+          "name": "Instituição 2",
+          "limit": 30000,
+          "interest": 0.05,
+          "term": 36,
+          "isActive": true
+        },
+        {
+          "name": "Instituição 3",
+          "limit": 75000,
+          "interest": 0.053,
+          "term": 48,
+          "isActive": false
+        }
+      ]
     },
     "cliente4@example.com": {
       "opportunities": [
