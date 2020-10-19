@@ -4,7 +4,8 @@ var getOppotunities = require('../services/getOpportunities');
 var usersRouter = express.Router();
 
 
-/******************[Buscando todos os usuários]****************** */
+/******************[Buscando todos os clientes]****************** */
+// Esta chamada "GET" trás uma lista com todos os clientes listados.
 usersRouter.get('/users', async (req, res) => {
   const data = await methods.getAll("users");
   const resposta = res.json(data)
@@ -13,6 +14,7 @@ usersRouter.get('/users', async (req, res) => {
 /**************************************************************** */
 
 /***************[Buscando todas as oportunidades]**************** */
+// Esta chamada "GET" trás uma lista com todas oportunidades existentes.
 usersRouter.get('/opportunities', async (req, res) => {
   const data = await methods.getAll("opportunities");
   const resposta = res.json(data)
@@ -20,7 +22,8 @@ usersRouter.get('/opportunities', async (req, res) => {
 });
 /**************************************************************** */
 
-/******************[Buscando um único usuário]****************** */
+/******************[Buscando um único cliente]******************* */
+// Aqui é possível listar as informações de um cliente específico.
 usersRouter.get('/users/:email', async (req, res) => {
   const { email } = req.params;
   const data = await methods.getOne("users", email);
@@ -29,7 +32,10 @@ usersRouter.get('/users/:email', async (req, res) => {
 });
 /**************************************************************** */
 
-/**************[Buscando oportunidades por usuário]************** */
+/**************[Buscando oportunidades por cliente]************** */
+/* Esta chamada lista todas as oportunidades de um cliente específico.
+Para isso criamos um serviço auxiliar, o "getOpportunities", que 
+identifica um usuário específico e trás seu array de oportunidades */
 usersRouter.get('/opportunities/:email', async (req, res) => {
   const { email } = req.params;
   const resposta = await getOppotunities(email);
@@ -38,6 +44,10 @@ usersRouter.get('/opportunities/:email', async (req, res) => {
 /**************************************************************** */
 
 /*****************[Criando uma nova oportunidade]**************** */
+/* Aqui podemos inserir na lista de oportunidades de cada cliente uma
+nova oportunidade com todos os seus dados. Escolhemos o cliente, com 
+auxilio do serviço "getOpportunities" buscamos seu array de oportunidades
+e usando o ".push()" inserimos a nova oportuidade criada.*/
 usersRouter.post('/opportunities/:email', async (req, res) => {
   const { email } = req.params;
   const newOpportunity = req.body;
@@ -50,6 +60,11 @@ usersRouter.post('/opportunities/:email', async (req, res) => {
 /**************************************************************** */
 
 /*******************[Editando uma oportunidade]****************** */
+/* Com esta chamada é possível editar qualquer campo de uma oportunidade
+específica. O frontend deve enviar no corpo da requisição um novo objeto
+com todas as informações da oportunidade editada já atualizada. Então, o
+".splice()" remove a oportunidade desatualizada e insere no mesmo lugar o 
+novo objeto. */
 usersRouter.put('/opportunities/:email', async (req, res) => {
   const { email } = req.params;
   const { newData, index } = req.body;
@@ -61,6 +76,9 @@ usersRouter.put('/opportunities/:email', async (req, res) => {
 /**************************************************************** */
 
 /******************[Deletando uma oportunidade]****************** */
+/* Aqui novamente usamos o ".splice()", dessa vez apenas para remover
+da lista de oportunidades uma especícica identificada pelo valor do 
+index no array. */
 usersRouter.delete('/opportunities/:email', async (req, res) => {
   const { email } = req.params;
   const { index } = req.body;

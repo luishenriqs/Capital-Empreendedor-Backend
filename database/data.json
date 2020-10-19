@@ -61,7 +61,15 @@
       ]
     },
     "cliente2@example.com": {
-      "opportunities": []
+      "opportunities": [
+        {
+          "name": "Instituição 3",
+          "limit": 75000,
+          "interest": 0.053,
+          "term": 48,
+          "isActive": false
+        }
+      ]
     },
     "cliente3@example.com": {
       "opportunities": [
