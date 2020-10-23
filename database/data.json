@@ -92,7 +92,7 @@
           "limit": 75000,
           "interest": 0.053,
           "term": 48,
-          "isActive": true
+          "isActive": false
         },
         {
           "name": "Instituição 3",
@@ -129,15 +129,7 @@
       ]
     },
     "cliente5@example.com": {
-      "opportunities": [
-        {
-          "name": "Nova Instituição ",
-          "limit": "5000",
-          "interest": "0.05",
-          "term": "60",
-          "isActive": true
-        }
-      ]
+      "opportunities": []
     }
   }
 }

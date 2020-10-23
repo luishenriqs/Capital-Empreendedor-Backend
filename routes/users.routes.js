@@ -117,19 +117,15 @@ usersRouter.put('/opportunities/:email', async (req, res) => {
 /******************[Deletando uma oportunidade]****************** */
 /* A próxima requisição remove uma das oportunidades do cliente.
 Com o email, retirado do "req.params", selecionamos as oportunidades do cliente 
-com o serviço "getOpportunities". Daí, usando o nome da instituição selecionamos
+com o serviço "getOpportunities". Daí, usando o índice selecionamos
 a oportunidade específica, e com o splice a removemos do array, retornando
 o objeto já atualizado */
 
 usersRouter.delete('/opportunities/:email/:name', async (req, res) => {
-  const { email, name } = req.params;
+  const { email, index } = req.params;
   const opportunities = await getOppotunities(email);
+  opportunities.splice(index, 1);
 
-  for ( i = 0; i < opportunities.length; i++ ) {
-    if(opportunities[i].name === name) {
-      opportunities.splice(opportunities.indexOf(name), 1);
-    }
-  }
   const data = await methods.set("opportunities", email, {opportunities});
   res.send(data);
 });
