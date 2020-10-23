@@ -67,14 +67,14 @@
           "limit": 75000,
           "interest": 0.053,
           "term": 48,
-          "isActive": false
+          "isActive": true
         },
         {
           "name": "Instituição 1",
           "limit": 75000,
           "interest": 0.053,
           "term": 48,
-          "isActive": false
+          "isActive": true
         }
       ]
     },
@@ -92,14 +92,14 @@
           "limit": 75000,
           "interest": 0.053,
           "term": 48,
-          "isActive": false
+          "isActive": true
         },
         {
           "name": "Instituição 3",
           "limit": 75000,
           "interest": 0.053,
           "term": 48,
-          "isActive": false
+          "isActive": true
         }
       ]
     },
@@ -117,19 +117,27 @@
           "limit": 2000000,
           "interest": 0.04,
           "term": 36,
-          "isActive": true
+          "isActive": false
         },
         {
           "name": "Instituição 3",
           "limit": 500000,
           "interest": 0.025,
           "term": 24,
-          "isActive": false
+          "isActive": true
         }
       ]
     },
     "cliente5@example.com": {
-      "opportunities": []
+      "opportunities": [
+        {
+          "name": "Nova Instituição ",
+          "limit": "5000",
+          "interest": "0.05",
+          "term": "60",
+          "isActive": true
+        }
+      ]
     }
   }
 }

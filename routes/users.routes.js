@@ -73,21 +73,27 @@ usersRouter.post('/opportunities/:email', async (req, res) => {
 
 /**************[Editando o status da opportunidade]************** */
 /* Com esta chamada é possível editar o campo status de uma oportunidade. 
-O frontend deve enviar no corpo da requisição o index da opportunidade a ser
-alterada e o seu novo status. Com o email, retirado do "req.params", selecionamos
-as oportunidades do cliente com o serviço "getOpportunities". Daí, usando o index
-escolhemos a oportunidade específica. Com o "Object.values" transformamos o 
+O frontend deve enviar no corpo da requisição o nome da instituição que oferece 
+a opportunidade a ser alterada e o seu novo status. 
+Com o email, retirado do "req.params", selecionamos as oportunidades do cliente 
+com o serviço "getOpportunities". Daí, usando o nome da instituição selecionamos
+ a oportunidade específica. Com o "Object.values" transformamos o 
 objeto em array, e com o "splice" substituímos o status antigo pelo novo.
 Retornamos para a forma de objeto criando a "const obj". 
 Por fim, no objeto original de oportunidades (opportunities), removemos a 
-oportunity desatualizada e inserimos a nova mais uma vez usando o "splice". 
+oportunity desatualizada e inserimos a nova usando o loop "for". 
 Após esses passos o objeto esta pronto para ser salvo com o "method.set()". */
 
 usersRouter.put('/opportunities/:email', async (req, res) => {
   const { email } = req.params;
-  const { newStatus, index } = req.body;
+  const { newStatus, name } = req.body;
   const opportunities = await getOppotunities(email);
-  const opportunity = opportunities[index];
+
+  for ( i = 0; i < opportunities.length; i++ ) {
+    if(opportunities[i].name === name)
+    var opportunity = opportunities[i];
+  }
+
   array = Object.values(opportunity);
   array.splice(4,1,newStatus);
 
@@ -98,7 +104,10 @@ usersRouter.put('/opportunities/:email', async (req, res) => {
   obj.term = array[3];
   obj.isActive = array[4];
 
-  opportunities.splice(index,1,obj)
+  for ( i = 0; i < opportunities.length; i++ ) {
+    if(opportunities[i].name === name)
+    opportunities[i] = obj;
+  }
 
   const data = await methods.set("opportunities", email, {opportunities});
   res.send(data);
@@ -106,14 +115,21 @@ usersRouter.put('/opportunities/:email', async (req, res) => {
 /**************************************************************** */
 
 /******************[Deletando uma oportunidade]****************** */
-/* Aqui novamente usamos o ".splice()", dessa vez apenas para remover
-uma oportunidade específica da lista "opportunities". */
+/* A próxima requisição remove uma das oportunidades do cliente.
+Com o email, retirado do "req.params", selecionamos as oportunidades do cliente 
+com o serviço "getOpportunities". Daí, usando o nome da instituição selecionamos
+a oportunidade específica, e com o splice a removemos do array, retornando
+o objeto já atualizado */
 
-usersRouter.delete('/opportunities/:email', async (req, res) => {
-  const { email } = req.params;
-  const { index } = req.body;
+usersRouter.delete('/opportunities/:email/:name', async (req, res) => {
+  const { email, name } = req.params;
   const opportunities = await getOppotunities(email);
-  opportunities.splice(index, 1);
+
+  for ( i = 0; i < opportunities.length; i++ ) {
+    if(opportunities[i].name === name) {
+      opportunities.splice(opportunities.indexOf(name), 1);
+    }
+  }
   const data = await methods.set("opportunities", email, {opportunities});
   res.send(data);
 });
