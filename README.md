@@ -1,5 +1,27 @@
-# CE Test - Web Server
+# Capital-Empreendedor-Backend
 
-## Running the server
+### Descrição/Description
 
-Run `npm start` or `yarn start` to run the server on `http://localhost:3000/`. The server will **not** automatically reload if you change any of the source files.
+A aplicação foi desenvolvida em cima de uma estrutura de uma API em Node.js usando Express, fornecida pela empresa "Capital Empreendedor", ela possúi um arquivo JSON contendo os
+dados de exemplo simulando um banco NoSQL e uma biblioteca que realiza as operações de leitura e escrita nesse arquivo (getAll, getOne, set, update, delete).
+
+No arquivo "routes/users.routes.js" foi implementada as chamadas necessárias para uso pelo front-end, utilizando as funções fornecidas para acesso e manipulação dos dados.
+
+
+<i>The application was developed on top of an API structure in Node.js using Express, provided by the company "Capital Empreendedor", it has a JSON file containing the
+sample data simulating a NoSQL database and a library that performs read and write operations on that file (getAll, getOne, set, update, delete).
+
+In the file "routes / users.routes.js", the necessary calls for use by the front-end were implemented, using the functions provided for access and data manipulation.</i>
+
+### Endereço/Address
+
+O endereço de conexão do servidor é: http://localhost:3000
+
+
+<i>The server's connection address is: http: // localhost: 3000</i>
+
+### Inicialização/To start
+
+Para se inicializar o servidor abra o terminal na pasta do projeto e digite o comando "yarn start"
+
+<i>In the project directory, you can run: "yarn start"</i>
